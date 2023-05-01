@@ -8,3 +8,4 @@ MarkupSafe==2.1.2
 Werkzeug==2.3.2
 openai
 jira
+python-dotenv==0.19.2
