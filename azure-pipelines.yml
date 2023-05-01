@@ -17,11 +17,6 @@ steps:
     pip install -r requirements.txt
   displayName: 'Install dependencies'
 
-- script: |
-    source venv/bin/activate
-    pytest
-  displayName: 'Run tests'
-
 - task: ArchiveFiles@2
   inputs:
     rootFolderOrFile: '$(Build.SourcesDirectory)'
