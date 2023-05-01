@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JiraGPTApp</title>
+</head>
+<body>
+    <h1>JiraGPTApp</h1>
+    <form id="query-form">
+        <label for="query">Enter your query:</label><br>
+        <textarea id="query" name="query" rows="4" cols="50"></textarea><br><br>
+        <input type="submit" value="Submit">
+    </form>
+    <hr>
+    <div id="response"></div>
+
+    <script>
+        document.getElementById("query-form").addEventListener("submit", async (event) => {
+            event.preventDefault();
+            const query = document.getElementById("query").value;
+            const responseDiv = document.getElementById("response");
+            responseDiv.innerHTML = "Loading...";
+
+            const response = await fetch("/api/query", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ query: query })
+            });
+
+            if (response.ok) {
+                const jsonResponse = await response.json();
+                responseDiv.innerHTML = JSON.stringify(jsonResponse, null, 2);
+            } else {
+                responseDiv.innerHTML = "Error: " + response.statusText;
+            }
+        });
+    </script>
+</body>
+</html>
