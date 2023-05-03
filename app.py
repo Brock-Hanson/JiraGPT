@@ -11,7 +11,7 @@ load_dotenv()
 openai.api_key = os.environ["OPENAI_API_KEY"]
 
 # Set up Jira API
-jira_options = {"server": "https://your-jira-domain.atlassian.net"}
+jira_options = {"server": "https://caddiscap.atlassian.net"}
 jira = JIRA(options=jira_options, basic_auth=(os.environ["JIRA_EMAIL"], os.environ["JIRA_API_TOKEN"]))
 
 app = Flask(__name__)
